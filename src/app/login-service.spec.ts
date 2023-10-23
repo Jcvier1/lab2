@@ -59,47 +59,46 @@ describe('Disconected test', () => {
     expect(ls.desconnect(usuario)).toBe(false);
   });
 
+});
 
-  /**
-   * Describe del doble de prueba fake de la funcion isConnect de account-repository
-   */
-  describe("Fake fuction isConnect", () => {
-    // variables necesarias para realizar las pruebas de integracion
-    let accountRepository: FakeAccountRepository;
-    let loginService: LoginService;
-    // se crea una cuenta existente con su respectivo email que es agregada a la lista de las cuentas validas en el beforeEach
-    const email = "usuario@example.com";
-    const account = new Account();
-    account.setEmail(email);
+/**
+  * Describe del doble de prueba fake de la funcion isConnect de account-repository
+  */
+describe("Fake fuction isConnect", () => {
+  // variables necesarias para realizar las pruebas de integracion
+  let accountRepository: FakeAccountRepository;
+  let loginService: LoginService;
+  // se crea una cuenta existente con su respectivo email que es agregada a la lista de las cuentas validas en el beforeEach
+  const email = "usuario@example.com";
+  const account = new Account();
+  account.setEmail(email);
 
-    beforeEach(() => {//instancias necesarias para las pruebas
-      accountRepository = new FakeAccountRepository();
-      accountRepository.save(account);
-      loginService = new LoginService(accountRepository);
-    });
-
-    /**
-     * El nombre de la prueba es true si es un email existente
-     * El objetivo es que si el email probado esta en la lista entonces va a mostrar true
-     * los datos que se van a usar son la cuenta con su respectivo email la cual va a ser verificada
-     * el resultado esperado es que sea verdadero ya que el correo si existe
-     */
-    it("Return true para un email existente en el fake", () => {
-      const result = loginService.isConnect(email);
-      expect(result).toBe(true);
-    });
-
-    /**
-     * El nombre de la prueba es true si es un email no existente
-     * El objetivo es que si el email probado no esta en la lista va a mostar false
-     * los datos que se van a usar son la cuenta con su respectivo email la cual va a ser verificada
-     * el resultado esperado es que sea falso ya que el correo no existe
-     */
-    it("Return false para un email inexistente en el fake", () => {
-      const invaliEmail = "usuario-#@example.com";
-      expect(loginService.isConnect(invaliEmail)).toBe(false);
-    });
+  beforeEach(() => {//instancias necesarias para las pruebas
+    accountRepository = new FakeAccountRepository();
+    accountRepository.save(account);
+    loginService = new LoginService(accountRepository);
   });
 
+  /**
+   * El nombre de la prueba es true si es un email existente
+   * El objetivo es que si el email probado esta en la lista entonces va a mostrar true
+   * los datos que se van a usar son la cuenta con su respectivo email la cual va a ser verificada
+   * el resultado esperado es que sea verdadero ya que el correo si existe
+   */
+  it("Return true para un email existente", () => {
+    const result = loginService.isConnect(email);
+    expect(result).toBe(true);
+  });
 
+  /**
+   * El nombre de la prueba es true si es un email no existente
+   * El objetivo es que si el email probado no esta en la lista va a mostar false
+   * los datos que se van a usar son la cuenta con su respectivo email la cual va a ser verificada
+   * el resultado esperado es que sea falso ya que el correo no existe
+   */
+  it("Return false para un email inexistente", () => {
+    const invaliEmail = "usuario-#@example.com";
+    expect(loginService.isConnect(invaliEmail)).toBe(false);
+  });
 });
+

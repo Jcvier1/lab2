@@ -1,8 +1,7 @@
 import { Account } from "./account";
 import { AccountRepository } from "./account-repository";
 import { Rol } from "./rol";
-
-class AccountRepositoryStub implements AccountRepository {
+class FakeAccountRepository implements AccountRepository {
   private accounts: Array<Account>;
   constructor() {
     this.accounts = [];
@@ -34,4 +33,4 @@ class AccountRepositoryStub implements AccountRepository {
   }
 }
 
-export { AccountRepositoryStub };
+export { FakeAccountRepository };
