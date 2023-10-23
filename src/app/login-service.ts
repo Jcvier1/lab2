@@ -41,7 +41,7 @@ export class LoginService {
         }
         return false;
     }
-
+    
     isConnect(email:string) {
         var account = this.accountRepository.findAccount(email);
         if(account ===  undefined || account === null)
